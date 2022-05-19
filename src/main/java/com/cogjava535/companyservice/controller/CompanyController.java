@@ -16,7 +16,7 @@ import com.cogjava535.companyservice.dto.CompanyDto;
 import com.cogjava535.companyservice.service.CompanyServiceInterface;
 
 @RestController
-@RequestMapping("/market/company")
+@RequestMapping("api/v1.0/market/company")
 public class CompanyController {
 
 	@Autowired
