@@ -21,9 +21,14 @@ public class CompanyController {
 
 	@Autowired
 	private CompanyServiceInterface compService;
-	
-	@PostMapping(path="/register")
-	public ResponseEntity<?> registerCompany(@RequestBody CompanyDto companyInput){
+
+	@RequestMapping(value = "/")
+	public String home() {
+		return "Company Details application";
+	}
+
+	@PostMapping(path = "/register")
+	public ResponseEntity<?> registerCompany(@RequestBody CompanyDto companyInput) {
 		CompanyDto companyOutput = new CompanyDto();
 		companyOutput.setId(companyInput.getId());
 		companyOutput.setCode(companyInput.getCode());
@@ -32,19 +37,19 @@ public class CompanyController {
 		compService.registerComapny(companyInput);
 		return ResponseEntity.ok(companyOutput);
 	}
-	
-	@GetMapping(path="/getall")
-	public ResponseEntity<List<CompanyDto>> getAllCompanies(){
+
+	@GetMapping(path = "/getall")
+	public ResponseEntity<List<CompanyDto>> getAllCompanies() {
 		List<CompanyDto> complanyList = new ArrayList<CompanyDto>();
 		complanyList = compService.getAllCompanies();
 		return ResponseEntity.ok(complanyList);
 	}
-	
-	@GetMapping(path="/info/{id}")
-	public ResponseEntity<CompanyDto> getCompanyDetails(@PathVariable String id ){
+
+	@GetMapping(path = "/info/{id}")
+	public ResponseEntity<CompanyDto> getCompanyDetails(@PathVariable String id) {
 		CompanyDto complanyInfo = new CompanyDto();
 		complanyInfo = compService.getCompanyDetails(id);
 		return ResponseEntity.ok(complanyInfo);
 	}
-	
+
 }
